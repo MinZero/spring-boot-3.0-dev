@@ -1,0 +1,293 @@
+spring:
+  application:
+    name: minzero-develop
+  profiles:
+    group:
+#      "local": "localDb,common"
+      "dev": "debugDb,common"
+#      "work": "workDb,common"
+#      "prod": "prodDb,common"
+    active: "dev"
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: "common"
+  devtools:
+    livereload:
+      enabled: true
+  thymeleaf:
+    cache: false
+    reactive:
+      max-chunk-size: 8192
+  cache:
+    type: none
+  http:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 500MB
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 500MB
+
+mybatis:
+  type-aliases-package: co.kr.minzero.dev.model
+  mapper-locations: classpath:mybatis/mapper/**/**.xml
+  config-location: classpath:mybatis/mybatis.config.xml
+
+logging:
+  level:
+    root: info
+
+jasypt:
+  encryptor:
+    bean: devEncryptor
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: "debugDb"
+#  datasource:
+#    url: ENC(RknfaNxHR/+fjspZ4EpAb6w2GwRFeqkvPSo9vby2VnnhEyg0JGzTotOksnkC+0mSj45Dq/3vfmR9xHKgBM5K4Y8cJMBy04IDIVZBcwQwsE1bAEiIRD+ukWQXVXT6lN9o)
+#    username: ENC(rNIK8PrObSKX4ehOHviObb0yNBJZ2Z2j7+36rGTPyV0=)
+#    password: ENC(MtLJzJc7S3H3T+Q99Bh8Xl2QGOHLgIf/v7vuPgN16JQa0WDOMTDVNPE5kalj50wC)
+#    driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+#    hikari:
+#      maximum-pool-size: 10
+#      minimum-idle: 2
+#
+  r2dbc:
+    url: ENC(BmXdd6L/GXamd02kyoQsL4QIUSpBzTq5wfsjcPU/dkbXlq1AWZ7fda1YCdchvP9daHB0DHrXHTnIkfYhSGYGOygcBlkrDsxYdWjOvOqbXzI=)
+    username: ENC(oJc5ulSHbh+5rKQqGxlrJKHfqKC41OJ3ebFzb7wuIyk=)
+    password: ENC(wOc2gDaOKzwecuWhz/hFauFHnUL03uKSC9yt80vdbX8=)
+  servlet:
+    multipart:
+      location: /Users/maca/Develop/temp
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: dcxper@gmail.com
+    password: Tbvexwriiqinghhl
+    properties:
+      mail:
+        smtp:
+          auth: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+          starttls:
+            enable: true
+          ssl:
+            trust: smtp.gmail.com
+
+server:
+  port: 8088
+  contextPath: /
+  tomcat:
+    remote-ip-header: x-forwarded-for
+    protocol-header: x-forwarded-proto
+  error:
+    whitelabel:
+      enabled: true
+
+upload:
+  default:
+    path: /Users/maca/Develop/upload
+    url: /common
+    pdf: /pdf
+
+schedule-job:
+  search-history-delete: 0 0/10 * * * ?
+
+login:
+  free-pass: true
+
+domain:
+  server: localhost
+  mobile: 192.168.0.37
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: "workDb"
+#  datasource:
+#    url: jdbc:log4jdbc:mysql://localhost:3306/lgcns_dc_portal?&useSSL=false
+#    username: datacenter
+#    password: epdlxjtpsxj2022!
+#    driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+  r2dbc:
+    url: r2dbc:mariadb://localhost:3306/lgcns_dc_portal?useSSL=false
+    username: datacenter
+    password: epdlxjtpsxj2022!
+  servlet:
+    multipart:
+      location: /Users/maca/Develop/temp
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: dcxper@gmail.com
+    password: Tbvexwriiqinghhl
+    properties:
+      mail:
+        smtp:
+          auth: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+          starttls:
+            enable: true
+          ssl:
+            trust: smtp.gmail.com
+
+server:
+  port: 8088
+  contextPath: /
+  tomcat:
+    remote-ip-header: x-forwarded-for
+    protocol-header: x-forwarded-proto
+  error:
+    whitelabel:
+      enabled: true
+
+upload:
+  default:
+    path: D:/dcportal/upload
+    url: /common
+    pdf: /pdf
+
+schedule-job:
+  search-history-delete: 0 0/10 * * * ?
+
+login:
+  free-pass: true
+
+domain:
+  server: thegrap.iptime.org
+  mobile: 218.153.157.7
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: "localDb"
+#  datasource:
+#    type: com.zaxxer.hikari.HikariDataSource
+#    url: ENC(sXm38BPKphsBvgj0e4WhytfkMhCiDmJwgUmBxdc+x5ogl3axq4VqSITLiCup1rZtmjBVIUybmuWEox2zf6NNUNQc+QR+RoDM4bLV6FQ4bU0=)
+#    username: ENC(EwWhq0eEZABIhkTPXchDKS56VsmamnB32aK7+5lG2Zg=)
+#    password: ENC(av08axxW3yQehJ/huhSAlgWUxq4zG22phx1qJ3AmT3A/2NMr693l8OSGS4VTwZqG)
+#    driverClassName: org.mariadb.jdbc.Driver
+#    hikari:
+#      maximum-pool-size: 10
+#      minimum-idle: 2
+  r2dbc:
+    url: ENC(/IKQdAOIp94lSnLR53m1ysHPxKOaodEPUiHzyKfrAoJfEtR899YO9YrQ4PVDuu11DjWnMRMw0zpt3xyYtsdNk21fM1gZkCaodxoP6I5PHyc=)
+    username: ENC(EwWhq0eEZABIhkTPXchDKS56VsmamnB32aK7+5lG2Zg=)
+    password: ENC(av08axxW3yQehJ/huhSAlgWUxq4zG22phx1qJ3AmT3A/2NMr693l8OSGS4VTwZqG)
+  servlet:
+    multipart:
+      location: /Users/maca/Develop/temp
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: dcxper@gmail.com
+    password: Tbvexwriiqinghhl
+    properties:
+      mail:
+        smtp:
+          auth: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+          starttls:
+            enable: true
+          ssl:
+            trust: smtp.gmail.com
+
+server:
+  port: 8088
+  contextPath: /
+  tomcat:
+    remote-ip-header: x-forwarded-for
+    protocol-header: x-forwarded-proto
+  error:
+    whitelabel:
+      enabled: true
+
+upload:
+  default:
+    path: /Users/maca/Develop/upload
+    url: /common
+    pdf: /pdf
+
+schedule-job:
+  search-history-delete: 0 0/10 * * * ?
+
+login:
+  free-pass: true
+
+domain:
+  server: dcxper.com
+  mobile: m.dcxper.com
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: "prodDb"
+#  datasource:
+#    type: com.zaxxer.hikari.HikariDataSource
+#    url: jdbc:mariadb://10.0.140.112:3306/DCP
+#    username: dcp_usr
+#    password: dcp_pass00!
+#    driverClassName: org.mariadb.jdbc.Driver
+#    hikari:
+#      maximumPoolSize: 30
+#      minimumIdle: 5
+  r2dbc:
+    url: ENC(/IKQdAOIp94lSnLR53m1ysHPxKOaodEPUiHzyKfrAoJfEtR899YO9YrQ4PVDuu11DjWnMRMw0zpt3xyYtsdNk21fM1gZkCaodxoP6I5PHyc=)
+    username: ENC(EwWhq0eEZABIhkTPXchDKS56VsmamnB32aK7+5lG2Zg=)
+    password: ENC(av08axxW3yQehJ/huhSAlgWUxq4zG22phx1qJ3AmT3A/2NMr693l8OSGS4VTwZqG)
+  servlet:
+    multipart:
+      location: /home/ec2-user/temp
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: dcxper@gmail.com
+    password: Tbvexwriiqinghhl
+    properties:
+      mail:
+        smtp:
+          auth: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+          starttls:
+            enable: true
+          ssl:
+            trust: smtp.gmail.com
+
+upload:
+  default:
+    path: /home/ec2-user/upload
+    url: /common
+    pdf: /pdf
+
+schedule-job:
+  search-history-delete: 0 0 1 * * ?
+
+login:
+  free-pass: false
+
+domain:
+  server: dcxper.com
+  mobile: m.dcxper.com

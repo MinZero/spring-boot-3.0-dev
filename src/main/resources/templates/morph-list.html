@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>TEST</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div id="title">
+                    <h1>Spring WebFlux + Thymeleaf</h1>
+                </div>
+                <div style="flex-direction: column">
+                    <dl class="result" th:each="morph, idx: ${morphList}">
+                        <dt>[[${idx.index + 1}]]</dt>
+                        <dd>[[${morph.morphNameKr}]]</dd>
+                        <dd>[[${morph.morphNameEn}]]</dd>
+                    </dl>
+                    <dl class="result" th:each="complex, idx: ${complexList}">
+                        <dt>[[${idx.index + 1}]]</dt>
+                        <dd>[[${complex.complexNameKr}]]</dd>
+                        <dd>[[${complex.complexNameEn}]]</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
